@@ -1,0 +1,22 @@
+
+todo:hierarchy of engine and input
+
+IDEA: static class input for input handling
+
+Engine class does have a unique thread instance for each window -> each window instance need to have a thread example
+So,
+1. Recode window class to be easier and to have more flexibility. Status: OK
+{
+    Window class could be static? -> to think
+    Window class interacts with user, but I need to control some Engine properties. How to do it? <- later
+}
+2. Recode renderer(or write new class of) in order to do simple things instead of more complex:
+    renderer.render(List of models)[FUTURE: multiple lighting and mb different shading program]
+3. Add texture support to model class(Mesh for now)
+4. Learn how to do interacting between objects in more simple way
+5.(->1) Engine
+{
+    What should engine do?
+    to control window but.. mb Window should control Engine instance(Window should be static or no)
+    let window class has an Engine instance where engine would do math for physics or smth.
+}
