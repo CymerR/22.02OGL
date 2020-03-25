@@ -47,12 +47,14 @@ public class  Window{
 //        glfwWindowHint(GLFW_VERSION_MINOR,0);
 
         windowHandle = glfwCreateWindow(WIDTH,HEIGHT,"Sector Clear",0,0);
-        System.err.println(windowHandle);
 
         //todo: Input handling functions will be here.
         glfwSetKeyCallback(windowHandle,(window, key, scancode, action, mods)->{
             switch (key) {
                 case GLFW_KEY_ESCAPE: glfwSetWindowShouldClose(windowHandle,true); break;
+                case GLFW_KEY_K:
+                    System.out.println("K"); break;
+                case GLFW_KEY_P: System.out.println("P"); break;
             }
         });
 
@@ -64,7 +66,7 @@ public class  Window{
 
     public static void makeCurrent(){
         glfwMakeContextCurrent(windowHandle);
-        glfwSwapInterval(3);
+        glfwSwapInterval(1);
         GL.createCapabilities();
     }
     public static void render(){
@@ -75,7 +77,7 @@ public class  Window{
         while(!glfwWindowShouldClose(windowHandle)) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-            engine.render();
+            //engine.render();
 
 
             glfwSetWindowTitle(windowHandle, "Sector Clear  " + get_fps());
@@ -99,6 +101,6 @@ public class  Window{
         float deltaTime = nextTime - prevTime;
         prevTime = nextTime;
         return (float) Math.round((1000f/deltaTime)*100)/100;
-    };
+    }
 
 }
