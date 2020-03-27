@@ -13,7 +13,7 @@ public class RenderFactory {
                     //do rendering
                     model.render();
                 }
-                System.out.println("Renderer workS");
+//                System.out.println("Renderer workS");
             }
         };
     }

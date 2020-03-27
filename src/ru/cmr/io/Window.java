@@ -61,6 +61,7 @@ public class  Window{
 
 
         //*****//
+        makeCurrent();
         engine = new Engine();
     }
 
@@ -72,8 +73,7 @@ public class  Window{
     public static void render(){
 
         glClearColor(0,0,0,0);
-//        long counter = 0l;
-//        int x = 0, y =0;
+
         while(!glfwWindowShouldClose(windowHandle)) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -92,7 +92,6 @@ public class  Window{
     }
 
     public static void start(){
-      makeCurrent();
       render();
     }
     private static long prevTime = 0, nextTime = 0;
