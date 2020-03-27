@@ -1,5 +1,8 @@
 package ru.cmr.models;
 
+import org.joml.Matrix4f;
+import org.joml.Vector3f;
+
 import java.util.ArrayList;
 
 import static org.lwjgl.opengl.GL30.*;
@@ -28,12 +31,35 @@ public class Model {
      * Количество вершин для отрисовки
      */
     int iCount;
-    ArrayList<Integer> buffers, indicesOfAttributes;
+    /**
+     *  Список идентификаторов всех буферов созданных на ГПУ
+     */
+    ArrayList<Integer> buffers;
+    /**
+     * Список аттрибутов модели(индексов массива атрибутов VAO)
+     */
+    ArrayList<Integer> indicesOfAttributes;
+    /**
+     * Мировая позиция модели
+     */
+    private Vector3f position;
+    /**
+     * Мировой поворот
+     */
+    private Vector3f rotation;
+    /**
+     * размер модели
+     */
+    private Vector3f scale;
     private Model(){
         vao = glGenVertexArrays();
         //
         buffers = new ArrayList<>();
         indicesOfAttributes = new ArrayList<>();
+
+        position = new Vector3f();
+        rotation = new Vector3f();
+        scale = new Vector3f();
     }
 
     /**
@@ -83,10 +109,29 @@ public class Model {
         glBindVertexArray(0);
     }
 
+    public void setProp(Vector3f pos,Vector3f rot,Vector3f scale){
+        this.position = pos;
+        this.rotation = rot;
+        this.scale = scale;
+    }
+
+    public Matrix4f getWorld(){
+        return new Matrix4f()
+                .identity()
+                .translate(position)
+                .rotateX(rotation.x)
+                .rotateY(rotation.y)
+                .rotateZ(rotation.z)
+                ;
+    }
 
     public void clean(){
         for (int buffer: buffers) // for each buffer in memory we clean space
             glDeleteBuffers(buffer);
         glDeleteVertexArrays(vao);
+    }
+
+    public void testRotate(Vector3f vector3f) {
+        this.rotation.add(vector3f);
     }
 }

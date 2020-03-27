@@ -1,12 +1,13 @@
 package ru.cmr.io.engine.utils;
 
+import ru.cmr.Shaders.Shader;
 import ru.cmr.models.Model;
 
 import java.util.ArrayList;
 
 public abstract class Render {
      ArrayList<Model> models ;
-     public abstract void render();
+     public abstract void render(Shader shader);
      Render(ArrayList<Model> models){
          this.models = models;
      }

@@ -21,8 +21,8 @@ import static org.lwjgl.glfw.GLFW.*;
  */
 public class Engine{
     public ArrayList<Model> models;
-    public static final Camera cameraObject = new Camera(new Vector3f(0,0,-1),new Vector3f());
-    private Shader shaderProgram;
+    public static final Camera cameraObject = new Camera(new Vector3f(0,0,0),new Vector3f());
+    public static Shader shaderProgram;
     Render rend;
 
     public Engine() {
@@ -37,7 +37,7 @@ public class Engine{
     public void render(){
         shaderProgram.bind();
         shaderProgram.sendUniformMat4("view", cameraObject.getView());
-        rend.render();
+        rend.render(shaderProgram);
         shaderProgram.unbind();
 
         pollEvents();

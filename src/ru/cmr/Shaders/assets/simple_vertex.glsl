@@ -10,8 +10,10 @@ out vec4 ovCol;
 
 uniform mat4 view;
 uniform mat4 projection;
+uniform mat4 transformation;
 
 void main() {
-    gl_Position = projection * view * vec4(evPos,1.0);
+    vec4 worldPos = transformation * vec4(evPos,1);
+    gl_Position = projection * view * transformation *vec4(evPos,1);
     ovCol = vec4(evColor,1.0);
 }

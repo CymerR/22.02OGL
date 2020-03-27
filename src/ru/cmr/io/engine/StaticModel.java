@@ -1,5 +1,6 @@
 package ru.cmr.io.engine;
 
+import org.joml.Vector3f;
 import ru.cmr.models.Model;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class StaticModel {
         };
 
         Model model = Model.getModel(vert,col,ind);
+        model.setProp(new Vector3f(0,0,-1), new Vector3f(0,0,0), new Vector3f(1,1,1));
         curr.add(model);
         return curr;
     }
