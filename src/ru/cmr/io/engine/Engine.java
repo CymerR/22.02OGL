@@ -2,6 +2,7 @@ package ru.cmr.io.engine;
 
 import ru.cmr.io.engine.utils.Render;
 import ru.cmr.io.engine.utils.RenderFactory;
+import ru.cmr.models.Model;
 
 import java.util.ArrayList;
 
@@ -11,11 +12,11 @@ import java.util.ArrayList;
  * @author CymerR
  */
 public class Engine{
-    public ArrayList models;
+    public ArrayList<Model> models;
     Render rend;
 
     public Engine() {
-        rend = RenderFactory.createSimple(models);
+        rend = RenderFactory.createSimple(StaticModel.getSimple());
     }
 
     public void render(){
