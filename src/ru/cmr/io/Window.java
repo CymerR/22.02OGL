@@ -3,6 +3,7 @@ package ru.cmr.io;
 
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
+import ru.cmr.io.controllers.Input;
 import ru.cmr.io.engine.Engine;
 
 import static org.lwjgl.glfw.GLFW.*;
@@ -50,12 +51,8 @@ public class  Window{
 
         //todo: Input handling functions will be here.
         glfwSetKeyCallback(windowHandle,(window, key, scancode, action, mods)->{
-            switch (key) {
-                case GLFW_KEY_ESCAPE: glfwSetWindowShouldClose(windowHandle,true); break;
-                case GLFW_KEY_K:
-                    System.out.println("K"); break;
-                case GLFW_KEY_P: System.out.println("P"); break;
-            }
+            if (action == GLFW_PRESS)   Input.KEY_CODE[key] = true;
+            if (action == GLFW_RELEASE) Input.KEY_CODE[key] = false;
         });
 
 
@@ -79,13 +76,13 @@ public class  Window{
 
             engine.render();
 
-
             glfwSetWindowTitle(windowHandle, "Sector Clear  " + get_fps());
             glfwSwapBuffers(windowHandle);
             glfwPollEvents();
         }
         destroy();
     }
+
 
     public static void destroy(){
         glfwTerminate();

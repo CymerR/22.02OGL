@@ -8,7 +8,10 @@ layout(location = 2) in vec2 evTexCoord;
 //out vec4 ovPos;
 out vec4 ovCol;
 
+uniform mat4 view;
+uniform mat4 projection;
+
 void main() {
-    gl_Position = vec4(evPos,1.0);
+    gl_Position = projection * view * vec4(evPos,1.0);
     ovCol = vec4(evColor,1.0);
 }
