@@ -23,6 +23,7 @@ public class Engine{
     public ArrayList<Model> models;
     public static final Camera cameraObject = new Camera(new Vector3f(0,0,0),new Vector3f());
     public static Shader shaderProgram;
+    public float sensitivity = 0.1f;
     Render rend;
 
     public Engine() {
@@ -51,5 +52,8 @@ public class Engine{
         if (Input.isKeyPressed(GLFW_KEY_D)) cameraObject.move(new Vector3f(.01f,0,0));
         if (Input.isKeyPressed(GLFW_KEY_SPACE)) cameraObject.move(new Vector3f(0,0.01f,0));
         if (Input.isKeyPressed(GLFW_KEY_LEFT_SHIFT)) cameraObject.move(new Vector3f(0,-.01f,0));
+
+
+        if(Input.isButtonPressed(GLFW_MOUSE_BUTTON_LEFT)) cameraObject.rotate(new Vector3f(Input.getCursorMoving()[1] * sensitivity,Input.getCursorMoving()[0] * sensitivity,0));
     }
 }

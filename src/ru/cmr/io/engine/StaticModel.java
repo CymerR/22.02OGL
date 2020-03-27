@@ -15,7 +15,7 @@ public class StaticModel {
                 0,0,0,
         };
         float[] col = {
-                1,1,1,
+                0,1,1,
                 1,1,0,
                 1,0,1
         };

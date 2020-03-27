@@ -1,6 +1,5 @@
 package ru.cmr.io.engine.utils;
 
-import org.joml.Vector3f;
 import ru.cmr.Shaders.Shader;
 import ru.cmr.models.Model;
 
@@ -15,7 +14,6 @@ public class RenderFactory {
                     //do rendering
                     shaderProgram.sendUniformMat4("transformation",model.getWorld());
                     model.render();
-                    model.testRotate(new Vector3f(0,0.011f,-0.001f));
                 }
             }
         };

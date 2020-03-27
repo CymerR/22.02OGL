@@ -55,7 +55,18 @@ public class  Window{
             if (action == GLFW_RELEASE) Input.KEY_CODE[key] = false;
         });
 
+        glfwSetMouseButtonCallback(windowHandle,(window,key,action,mods)->{
+            if (action == GLFW_PRESS)   Input.BTN_CODE[key] = true;
+            if (action == GLFW_RELEASE) Input.BTN_CODE[key] = false;
+        });
 
+        glfwSetWindowSizeCallback(windowHandle, (window, xwidth, yheight)->{
+            glViewport(0,0,xwidth,yheight); //Это меняет размеры OpenGL контекста в зав. от изменения размера окна
+        });
+
+        glfwSetCursorPosCallback(windowHandle, (window, xpos,ypos)->{
+            Input.updateCursor((float)xpos,(float)ypos);
+        });
 
         //*****//
         makeCurrent();
@@ -96,7 +107,7 @@ public class  Window{
         nextTime = System.currentTimeMillis();
         float deltaTime = nextTime - prevTime;
         prevTime = nextTime;
-        return (float) Math.round((1000f/deltaTime)*100)/100;
+        return (float) Math.round((1000f/deltaTime)*10)/10;
     }
 
 }
