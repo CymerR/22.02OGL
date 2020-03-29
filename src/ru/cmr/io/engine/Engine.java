@@ -1,6 +1,7 @@
 package ru.cmr.io.engine;
 
 import org.joml.Vector3f;
+import org.lwjgl.nuklear.NkContext;
 import ru.cmr.Shaders.Shader;
 import ru.cmr.io.Window;
 import ru.cmr.io.controllers.Input;
@@ -41,6 +42,9 @@ public class Engine{
         rend.render(shaderProgram);
         shaderProgram.unbind();
 
+        //todo: GUI rendering
+        GUIRendering();
+
         pollEvents();
     }
 
@@ -55,5 +59,11 @@ public class Engine{
 
 
         if(Input.isButtonPressed(GLFW_MOUSE_BUTTON_LEFT)) cameraObject.rotate(new Vector3f(Input.getCursorMoving()[1] * sensitivity,Input.getCursorMoving()[0] * sensitivity,0));
+    }
+
+
+    private void GUIRendering(){
+        //do rendering staff
+        NkContext ctx = NkContext.create();
     }
 }
